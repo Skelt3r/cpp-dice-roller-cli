@@ -14,7 +14,7 @@ int main() {
         stream >> num_dice >> d >> num_sides >> oper >> mod;
         int *rolls = new int[num_dice];
 
-        if (input == "exit") {
+        if (input == "exit" || input == "quit") {
             return 0;
         }
         else if (d != 'd') {
@@ -42,10 +42,9 @@ int main() {
             else if (oper == '-') sum -= mod;
         }
 
-        std::cout << "\nResult: " << result << "\n";
-        if (num_dice > 1 || mod != 0)
-            std::cout << "Mod: " << oper << mod << "\n" << "Sum: " << sum << "\n";
-        std::cout << "\n";
+        std::cout << "\nResult: " << result << "\n"
+                  << "Mod: " << oper << mod << "\n"
+                  << "Sum: " << sum << "\n\n";
 
         delete[] rolls;
         result = "";
