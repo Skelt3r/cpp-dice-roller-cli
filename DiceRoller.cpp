@@ -18,7 +18,9 @@ int main() {
             return 0;
         }
         else if (d != 'd') {
-            std::cout << "\nInvalid format.\nTry: num_dice >> d >> num_sides >> oper (optional) >> mod (optional)\nValid examples: 1d20 | 1d12+5 | 2d6-1\n\n";
+            std::cout << "\nInvalid format.\n"
+                      << "Try: num_dice >> d >> num_sides >> oper (optional) >> mod (optional)\n"
+                      << "Valid examples : 1d20 | 1d12+5 | 2d6-1\n\n";
             continue;
         }
         else if (num_dice < 1 || num_sides < 2) {
