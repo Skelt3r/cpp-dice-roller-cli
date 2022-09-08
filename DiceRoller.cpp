@@ -27,6 +27,10 @@ int main() {
             std::cout << "\nMust roll at least 1 dice with at least 2 sides.\n\n";
             continue;
         }
+        else if (oper != '+' && oper != '-') {
+            std::cout << "\nArithmetic operator must be \"+\" or \"-\".\n\n";
+            continue;
+        }
         else {
             for (int i = 0; i < num_dice; i++) {
                 rolls[i] = rand() % num_sides + 1;
@@ -46,7 +50,6 @@ int main() {
         delete[] rolls;
         result = "";
         oper = '+';
-        mod = 0;
-        sum = 0;
+        mod = sum = 0;
     }
 }
