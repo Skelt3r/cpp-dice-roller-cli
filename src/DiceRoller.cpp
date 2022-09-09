@@ -2,13 +2,15 @@
 #include <sstream>
 #include "Utils.h"
 
-int main() {
+int main()
+{
     int num_dice = 1, num_sides = 20, mod = 0, sum = 0;
     char d = 'd', oper = '+';
     std::string input, result = "";
     srand(time(0));
 
-    while (true) {
+    while (true)
+    {
         std::cout << "Roll the dice:\n> ";
         std::cin >> input;
         std::istringstream stream(input);
@@ -39,7 +41,8 @@ int main() {
         }
         else
         {
-            for (int i = 0; i < num_dice; i++) {
+            for (int i = 0; i < num_dice; i++)
+            {
                 rolls[i] = rand() % num_sides + 1;
                 sum += rolls[i];
                 result.append(std::to_string(rolls[i]));
