@@ -1,15 +1,18 @@
 #include <iostream>
 #include "Utils.h"
 
-void cleanup(int rolls[], std::string &result, char &oper, int &mod, int &sum) {
+void cleanup(int rolls[], std::string &result, char &oper, int &mod, int &sum)
+{
     delete[] rolls;
     result = "";
     oper = '+';
     mod = sum = 0;
 }
 
-void error_message(int id) {
-    switch (id) {
+void error_message(int id)
+{
+    switch (id)
+    {
     case 0:
         std::cout << "\nInvalid format.\n"
             << "Try: # dice >> d >> # sides >> operator >> modifier\n"
