@@ -1,6 +1,19 @@
 #include <iostream>
 #include <sstream>
 
+void error_message(int id) {
+    switch (id) {
+    case 0:
+        std::cout << "\nInvalid format.\n"
+                  << "Try: # dice >> d >> # sides >> operator >> modifier\n"
+                  << "Valid examples : 1d20 | 1d12+5 | 2d6-1\n\n";
+    case 1:
+        std::cout << "\nMust roll at least 1 dice with at least 2 sides.\n\n";
+    case 2:
+        std::cout << "\nArithmetic operator must be \"+\" or \"-\".\n\n";
+    }
+}
+
 int main() {
     int num_dice = 1, num_sides = 20, mod = 0, sum = 0;
     char d = 'd', oper = '+';
@@ -18,17 +31,15 @@ int main() {
             return 0;
         }
         else if (d != 'd') {
-            std::cout << "\nInvalid format.\n"
-                      << "Try: num_dice >> d >> num_sides >> oper (optional) >> mod (optional)\n"
-                      << "Valid examples : 1d20 | 1d12+5 | 2d6-1\n\n";
+            error_message(0);
             continue;
         }
         else if (num_dice < 1 || num_sides < 2) {
-            std::cout << "\nMust roll at least 1 dice with at least 2 sides.\n\n";
+            error_message(1);
             continue;
         }
         else if (oper != '+' && oper != '-') {
-            std::cout << "\nArithmetic operator must be \"+\" or \"-\".\n\n";
+            error_message(2);
             continue;
         }
         else {
@@ -38,8 +49,7 @@ int main() {
                 result.append(std::to_string(rolls[i]));
                 if (i < num_dice - 1) result.append(", ");
             }
-            if (oper == '+') sum += mod;
-            else if (oper == '-') sum -= mod;
+            (oper == '+') ? sum += mod : sum -= mod;
         }
 
         std::cout << "\nResult: " << result << "\n"
