@@ -7,8 +7,10 @@ void error_message(int id) {
         std::cout << "\nInvalid format.\n"
                   << "Try: # dice >> d >> # sides >> operator >> modifier\n"
                   << "Valid examples : 1d20 | 1d12+5 | 2d6-1\n\n";
+        break;
     case 1:
         std::cout << "\nMust roll at least 1 dice with at least 2 sides.\n\n";
+        break;
     case 2:
         std::cout << "\nArithmetic operator must be \"+\" or \"-\".\n\n";
     }
