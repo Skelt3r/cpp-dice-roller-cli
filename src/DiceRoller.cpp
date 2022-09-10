@@ -1,5 +1,6 @@
 #include <iostream>
 #include <sstream>
+#include <vector>
 #include "Utils.h"
 
 int main()
@@ -7,6 +8,7 @@ int main()
     int num_dice = 1, num_sides = 20, mod = 0, sum = 0;
     char d = 'd', oper = '+';
     std::string input, result = "";
+    std::vector<int> rolls;
     srand(time(0));
 
     while (true)
@@ -15,41 +17,23 @@ int main()
         std::cin >> input;
         std::istringstream stream(input);
         stream >> num_dice >> d >> num_sides >> oper >> mod;
-        int *rolls = new int[num_dice];
 
-        if (input == "exit" || input == "quit")
+        if (input == "exit" || input == "quit") return 0;
+        else if (!parse_input(d, oper, num_dice, num_sides))
         {
-            return 0;
-        }
-        else if (d != 'd')
-        {
-            error_message(0);
             cleanup(rolls, result, oper, mod, sum);
             continue;
         }
-        else if (num_dice < 1 || num_sides < 2)
+
+        for (int i = 0; i < num_dice; i++)
         {
-            error_message(1);
-            cleanup(rolls, result, oper, mod, sum);
-            continue;
+            rolls.push_back(rand() % num_sides + 1);
+            sum += rolls[i];
+            result.append(std::to_string(rolls[i]));
+            if (i < num_dice - 1) result.append(", ");
         }
-        else if (oper != '+' && oper != '-')
-        {
-            error_message(2);
-            cleanup(rolls, result, oper, mod, sum);
-            continue;
-        }
-        else
-        {
-            for (int i = 0; i < num_dice; i++)
-            {
-                rolls[i] = rand() % num_sides + 1;
-                sum += rolls[i];
-                result.append(std::to_string(rolls[i]));
-                if (i < num_dice - 1) result.append(", ");
-            }
-            (oper == '+') ? sum += mod : sum -= mod;
-        }
+
+        (oper == '+') ? sum += mod : sum -= mod;
 
         std::cout << "\nResult: " << result << "\n"
                   << "Mod: " << oper << mod << "\n"
